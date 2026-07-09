@@ -1,0 +1,6 @@
+{
+  "name": "PulseIQ",
+  "description": "Real-time physiological tracking and analysis clinic app empowered by Mindwave AI clinical agent diagnostics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-neutral-50: #f8fafc;
+  --color-brand-neutral-100: #f1f5f9;
+  --color-brand-neutral-200: #e2e8f0;
+  --color-brand-neutral-800: #1e293b;
+  --color-brand-neutral-900: #0f172a;
+  --color-brand-neutral-950: #020617;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-brand-neutral-950 text-slate-100 antialiased selection:bg-teal-500 selection:text-white overflow-x-hidden;
+  }
+}
+
+/* Custom glowing pulse animation for biometric telemetry */
+@keyframes heartPulse {
+  0% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 2px rgba(20, 184, 166, 0.4)); }
+  15% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 12px rgba(20, 184, 166, 0.8)); }
+  30% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 2px rgba(20, 184, 166, 0.4)); }
+  45% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 12px rgba(20, 184, 166, 0.8)); }
+  70% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 2px rgba(20, 184, 166, 0.4)); }
+  100% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 2px rgba(20, 184, 166, 0.4)); }
+}
+
+.animate-heart-pulse {
+  animation: heartPulse 1.2s infinite ease-in-out;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 184, 166, 0.4);
+}
