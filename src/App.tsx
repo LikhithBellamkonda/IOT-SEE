@@ -11,6 +11,7 @@ import DiagnosticReportView from "./components/DiagnosticReportView";
 import MicroChallengeBoard from "./components/MicroChallengeBoard";
 import DailyTrendsCompiler from "./components/DailyTrendsCompiler";
 import HistoryGraph from "./components/HistoryGraph";
+import LiveStressAnalysis from "./components/LiveStressAnalysis";
 import { 
   Heart, 
   Activity, 
@@ -466,9 +467,9 @@ export default function App() {
           </header>
 
           <div className="mb-6">
-            <p className="text-[10px] text-slate-500 font-mono mb-2">Sensor Stream - Device: ESP32 + Pulse + LDR + Firmware 2.1.0 • Last sync 1.5s ago • Weather synced for {weatherLocation} • All systems nominal ✓</p>
+            <p className="text-[10px] text-slate-500 font-mono mb-2">Sensor Stream - Device: ESP32 + Pulse + LDR + DHT11 + Firmware 2.1.0 • Last sync 1.5s ago • All systems nominal ✓</p>
             <h1 className="text-2xl font-bold font-display text-white">My Personal Dashboard</h1>
-            <p className="text-xs text-slate-400 mt-1">Sensors: ESP32 (HR + LDR) • Weather: {weatherLocation}</p>
+            <p className="text-xs text-slate-400 mt-1">Sensors: ESP32 (HR + LDR + DHT11)</p>
           </div>
 
       {/* PANIC MODAL BANNER ON CRISIS DETECTED */}
@@ -812,8 +813,16 @@ export default function App() {
           </div>
           </div>
 
-          {/* Right Sidebar (Challenges) */}
-          <div className="lg:col-span-4 w-full">
+          {/* Right Sidebar (Challenges & Stress Diagnostics) */}
+          <div className="lg:col-span-4 w-full space-y-6">
+            <LiveStressAnalysis 
+              currentStress={stressScore} 
+              heartRate={heartRate} 
+              lightLevel={lightLevel} 
+              temperature={temperature} 
+              humidity={humidity} 
+              timeseries={timeseries} 
+            />
             <MicroChallengeBoard currentTelemetry={getCurrentTelemetry()} onPointsEarned={handlePointsEarned} />
           </div>
         </section>

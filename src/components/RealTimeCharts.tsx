@@ -53,7 +53,7 @@ export default function RealTimeCharts({ data }: RealTimeChartsProps) {
             <AreaChart data={data} margin={{ top: 5, right: 0, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorHr" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3}/> {/* Matching the cyan/teal color in UI */}
+                  <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3}/>
                   <stop offset="95%" stopColor="#06b6d4" stopOpacity={0}/>
                 </linearGradient>
               </defs>
@@ -91,6 +91,58 @@ export default function RealTimeCharts({ data }: RealTimeChartsProps) {
                 itemStyle={{ color: '#fbbf24' }}
               />
               <Line type="stepAfter" dataKey="light" stroke="#fbbf24" strokeWidth={2} dot={false} isAnimationActive={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Temperature Chart */}
+      <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-4">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h4 className="text-xs font-bold text-slate-300 flex items-center gap-2">
+              <span className="text-red-400">🌡️</span> Temperature <span className="bg-slate-800 px-1.5 py-0.5 rounded text-[10px] text-red-400">°C</span>
+            </h4>
+            <p className="text-[10px] text-slate-500">DHT sensor cabin temperature</p>
+          </div>
+        </div>
+        <div className="h-48">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data} margin={{ top: 5, right: 0, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+              <XAxis dataKey="time" stroke="#475569" fontSize={10} tickMargin={8} minTickGap={20} />
+              <YAxis stroke="#475569" fontSize={10} domain={['auto', 'auto']} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', fontSize: '11px', color: '#f8fafc' }}
+                itemStyle={{ color: '#f87171' }}
+              />
+              <Line type="monotone" dataKey="temperature" stroke="#f87171" strokeWidth={2} dot={false} isAnimationActive={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Humidity Chart */}
+      <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-4">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h4 className="text-xs font-bold text-slate-300 flex items-center gap-2">
+              <span className="text-blue-400">💧</span> Humidity <span className="bg-slate-800 px-1.5 py-0.5 rounded text-[10px] text-blue-400">%RH</span>
+            </h4>
+            <p className="text-[10px] text-slate-500">DHT sensor relative humidity</p>
+          </div>
+        </div>
+        <div className="h-48">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data} margin={{ top: 5, right: 0, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+              <XAxis dataKey="time" stroke="#475569" fontSize={10} tickMargin={8} minTickGap={20} />
+              <YAxis stroke="#475569" fontSize={10} domain={['auto', 'auto']} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', fontSize: '11px', color: '#f8fafc' }}
+                itemStyle={{ color: '#60a5fa' }}
+              />
+              <Line type="monotone" dataKey="humidity" stroke="#60a5fa" strokeWidth={2} dot={false} isAnimationActive={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>
